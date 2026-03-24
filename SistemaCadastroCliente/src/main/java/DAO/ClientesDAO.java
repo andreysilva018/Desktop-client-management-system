@@ -4,10 +4,20 @@
  */
 package DAO;
 
+import java.sql.Connection;
+
 /**
  *
  * @author SOUZA
  */
 public class ClientesDAO {
+    private Connection conn;
     
+    public void cadastrarCliente(){}
+    
+    public void alterarCliente(){}
+    
+    public void excluirCliente(){}
+    
+    public void listarCliente(){}
 }
