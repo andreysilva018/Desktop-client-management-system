@@ -4,6 +4,10 @@
  */
 package View;
 
+import DAO.ClientesDAO;
+import Model.Clientes;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author SOUZA
@@ -56,7 +60,7 @@ public class FrmCliente extends javax.swing.JFrame {
         txtEndereco = new javax.swing.JTextField();
         txtCep = new javax.swing.JFormattedTextField();
         txtNumero = new javax.swing.JTextField();
-        txtCidadeCliente = new javax.swing.JTextField();
+        txtCidade = new javax.swing.JTextField();
         txtComplemento = new javax.swing.JTextField();
         txtBairro = new javax.swing.JTextField();
         cbEstado = new javax.swing.JComboBox<>();
@@ -79,7 +83,7 @@ public class FrmCliente extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(305, 305, 305)
+                .addGap(367, 367, 367)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -118,6 +122,11 @@ public class FrmCliente extends javax.swing.JFrame {
         btnNovoCadastroCliente.setText("Novo");
 
         btnSalvarCadastroCliente.setText("Salvar");
+        btnSalvarCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarCadastroClienteActionPerformed(evt);
+            }
+        });
 
         btnExcluirCadastroCliente.setText("Excluir");
         btnExcluirCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +161,7 @@ public class FrmCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PAA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,7 +188,7 @@ public class FrmCliente extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(lblCidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCidadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblBairro)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -206,15 +215,14 @@ public class FrmCliente extends javax.swing.JFrame {
                                         .addComponent(lblCelular)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtCelular))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(lblCpf)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(lblRg)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtRg)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblCpf)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblRg)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtRg))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(lbNome)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -270,7 +278,7 @@ public class FrmCliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblCidade)
-                            .addComponent(txtCidadeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEstado)
                             .addComponent(lblBairro)
                             .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,6 +390,31 @@ public class FrmCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExcluirCadastroClienteActionPerformed
 
+    private void btnSalvarCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadastroClienteActionPerformed
+        try {
+            Clientes cliente = new Clientes();
+            
+            cliente.setNome(txtNome.getText());
+            cliente.setCpf(txtCpf.getText());
+            cliente.setRg(txtRg.getText());
+            cliente.setEmail(txtEmail.getText());
+            cliente.setCelular(txtCelular.getText());
+            cliente.setCep(txtCep.getText());
+            cliente.setEndereco(txtEndereco.getText());
+            cliente.setNumero(Integer.parseInt(txtNumero.getText()));
+            cliente.setBairro(txtBairro.getText());
+            cliente.setComplemento(txtComplemento.getText());
+            cliente.setCidade(txtCidade.getText());
+            cliente.setEstado(cbEstado.getSelectedItem().toString());
+            
+            ClientesDAO cDAO = new ClientesDAO();
+            cDAO.cadastrarCliente(cliente);
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro para salvar o cadastro do cliente - Erro:" + erro);
+        }
+    }//GEN-LAST:event_btnSalvarCadastroClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -393,7 +426,7 @@ public class FrmCliente extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -439,7 +472,7 @@ public class FrmCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCelular;
     private javax.swing.JFormattedTextField txtCep;
-    private javax.swing.JTextField txtCidadeCliente;
+    private javax.swing.JTextField txtCidade;
     private javax.swing.JTextField txtComplemento;
     private javax.swing.JFormattedTextField txtCpf;
     private javax.swing.JTextField txtEmail;
