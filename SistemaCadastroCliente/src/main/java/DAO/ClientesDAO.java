@@ -8,6 +8,9 @@ import JDBC.ConnectionFactory;
 import Model.Clientes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +27,7 @@ public class ClientesDAO {
     public void cadastrarCliente(Clientes cliente){
         try {
             String sql = "INSERT INTO tb_cliente(nome, cpf, rg, email, celular, cep, endereco, numero, bairro, complemento, cidade, estado)"
-                    + "values(?)";
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
@@ -49,9 +52,61 @@ public class ClientesDAO {
         }
     }
     
+    public void excluirCliente(Clientes cliente){
+        try {
+            String sql = "DELETE from tb_cliente where id = ?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, cliente.getId());
+            
+            stmt.execute();
+            stmt.close();
+            
+            JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!");
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro para excluir cliente - Erro" + erro);
+        }
+    }
+    
     public void alterarCliente(){}
     
-    public void excluirCliente(){}
-    
-    public void listarCliente(){}
+    public List<Clientes> listarClientes(){
+        try {
+            List<Clientes> lista = new ArrayList<>();
+            
+            String sql = "select * from tb_cliente";
+            
+            PreparedStatement stmt = conn.prepareCall(sql);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                Clientes cliente = new Clientes();
+                
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setCpf(rs.getString("cpf"));
+                cliente.setRg(rs.getString("rg"));
+                cliente.setEmail(rs.getString("email"));
+                cliente.setCelular(rs.getString("celular"));
+                cliente.setCep(rs.getString("cep"));
+                cliente.setEndereco(rs.getString("endereco"));
+                cliente.setNumero(rs.getInt("numero"));
+                cliente.setBairro(rs.getString("bairro"));
+                cliente.setComplemento(rs.getString("complemento"));
+                cliente.setCidade(rs.getString("cidade"));
+                cliente.setEstado(rs.getString("estado"));
+                
+                lista.add(cliente);
+            }            
+            
+            return lista;
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro na lista de clientes - Erro: " + erro);
+            return null;
+        }
+        
+    }
 }
