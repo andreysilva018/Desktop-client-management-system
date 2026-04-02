@@ -69,7 +69,7 @@ public class ClientesDAO {
         }
     }
     
-    public void alterarCliente(){}
+    public void alterarCliente(Clientes cliente){}
     
     public List<Clientes> listarClientes(){
         try {

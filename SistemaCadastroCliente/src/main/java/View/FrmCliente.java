@@ -30,7 +30,7 @@ public class FrmCliente extends javax.swing.JFrame {
         
         ClientesDAO cDAO = new ClientesDAO();
         List<Clientes> listaClientes = cDAO.listarClientes();
-        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        DefaultTableModel dados = (DefaultTableModel) tabelaCliente.getModel();
         dados.setNumRows(0);
         
         for(Clientes c: listaClientes){
@@ -71,7 +71,6 @@ public class FrmCliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lbNome = new javax.swing.JLabel();
         lblCpf = new javax.swing.JLabel();
@@ -99,6 +98,9 @@ public class FrmCliente extends javax.swing.JFrame {
         cbEstado = new javax.swing.JComboBox<>();
         lblCodigo = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaCliente = new javax.swing.JTable();
         btnExcluirCadastroCliente = new javax.swing.JButton();
         btnSalvarCadastroCliente = new javax.swing.JButton();
         btnAtualizarCadastroCliente = new javax.swing.JButton();
@@ -157,19 +159,6 @@ public class FrmCliente extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 979, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 470, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Consulta de clientes", jPanel3);
 
         lbNome.setText("Nome:");
 
@@ -253,7 +242,7 @@ public class FrmCliente extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblCodigo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(lblCep)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -282,7 +271,7 @@ public class FrmCliente extends javax.swing.JFrame {
                         .addComponent(lblEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap(336, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,6 +320,35 @@ public class FrmCliente extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Cadastro de clientes", jPanel2);
+
+        tabelaCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelaCliente);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Consulta de clientes", jPanel3);
 
         btnExcluirCadastroCliente.setText("Excluir");
         btnExcluirCadastroCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -396,7 +414,12 @@ public class FrmCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExcluirCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirCadastroClienteActionPerformed
-        // TODO add your handling code here:
+        Clientes cliente = new Clientes();
+        
+        cliente.setId(Integer.parseInt(txtCodigo.getText()));
+        
+        ClientesDAO cDAO = new ClientesDAO();
+        cDAO.excluirCliente(cliente);
     }//GEN-LAST:event_btnExcluirCadastroClienteActionPerformed
 
     private void btnSalvarCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarCadastroClienteActionPerformed
@@ -430,27 +453,43 @@ public class FrmCliente extends javax.swing.JFrame {
 
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         
-        if(evt.getClickCount() == 2){
+        //if(evt.getClickCount() == 2){
             jTabbedPane1.setSelectedIndex(1);
-            txtCodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
-            txtNome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
-            txtCpf.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2).toString());
-            txtRg.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3).toString());
-            txtEmail.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4).toString());
-            txtCelular.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5).toString());
-            txtCep.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6).toString());
-            txtEndereco.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7).toString());
-            txtNumero.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 8).toString());
-            txtBairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9).toString());
-            txtComplemento.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 10).toString());
-            txtCidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
-            cbEstado.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
-        }
+            txtCodigo.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 0).toString());
+            txtNome.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 1).toString());
+            txtCpf.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 2).toString());
+            txtRg.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 3).toString());
+            txtEmail.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 4).toString());
+            txtCelular.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 5).toString());
+            txtCep.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 6).toString());
+            txtEndereco.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 7).toString());
+            txtNumero.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 8).toString());
+            txtBairro.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 9).toString());
+            txtComplemento.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 10).toString());
+            txtCidade.setText(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 11).toString());
+            cbEstado.setSelectedItem(tabelaCliente.getValueAt(tabelaCliente.getSelectedRow(), 12).toString());
+        //}
     }//GEN-LAST:event_tabelaClientesMouseClicked
 
     private void btnAtualizarCadastroClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarCadastroClienteActionPerformed
         try {
+            Clientes cliente = new Clientes();
             
+            cliente.setNome(txtNome.getText());
+            cliente.setCpf(txtCpf.getText());
+            cliente.setRg(txtRg.getText());
+            cliente.setEmail(txtEmail.getText());
+            cliente.setCelular(txtCelular.getText());
+            cliente.setCep(txtCep.getText());
+            cliente.setEndereco(txtEndereco.getText());
+            cliente.setNumero(Integer.parseInt(txtNumero.getText()));
+            cliente.setBairro(txtBairro.getText());
+            cliente.setComplemento(txtComplemento.getText());
+            cliente.setCidade(txtCidade.getText());
+            cliente.setEstado(cbEstado.getSelectedItem().toString());
+            
+            ClientesDAO cDAO = new ClientesDAO();
+            cDAO.alterarCliente(cliente);
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
@@ -493,6 +532,7 @@ public class FrmCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lblBairro;
@@ -507,6 +547,7 @@ public class FrmCliente extends javax.swing.JFrame {
     private javax.swing.JLabel lblEstado;
     private javax.swing.JLabel lblNumero;
     private javax.swing.JLabel lblRg;
+    private javax.swing.JTable tabelaCliente;
     private javax.swing.JTable tabelaClientes;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JFormattedTextField txtCelular;
