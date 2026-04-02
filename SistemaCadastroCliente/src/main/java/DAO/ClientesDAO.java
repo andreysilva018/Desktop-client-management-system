@@ -54,9 +54,10 @@ public class ClientesDAO {
     
     public void excluirCliente(Clientes cliente){
         try {
-            String sql = "DELETE from tb_cliente where id = ?";
+            String sql = "delete from tb_cliente where id = ?";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
+            
             stmt.setInt(1, cliente.getId());
             
             stmt.execute();
