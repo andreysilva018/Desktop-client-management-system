@@ -19,7 +19,26 @@ public class FrmCliente extends javax.swing.JFrame {
     public void CarregarTableClientes(){
         ClientesDAO cDao = new ClientesDAO();
         List<Clientes> listaClientes = cDao.listarClientes();
-        //DefaultTableModel dados = (DefaultTableModel) 
+        DefaultTableModel dados = (DefaultTableModel) tabelaClientes.getModel();
+        dados.setNumRows(0);
+        
+        for(Clientes c : listaClientes){
+            dados.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getCpf(),
+                c.getRg(),
+                c.getEmail(),
+                c.getCelular(),
+                c.getCep(),
+                c.getEndereco(),
+                c.getNumero(),
+                c.getBairro(),
+                c.getComplemento(),
+                c.getCidade(),
+                c.getEstado()
+            });
+        }
     }
     
     /**
@@ -81,6 +100,11 @@ public class FrmCliente extends javax.swing.JFrame {
         txtComplemento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 255));
 
@@ -442,6 +466,10 @@ public class FrmCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro - " + erro);
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        CarregarTableClientes();
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
