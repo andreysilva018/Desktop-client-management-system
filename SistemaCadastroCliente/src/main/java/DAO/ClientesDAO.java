@@ -26,12 +26,15 @@ public class ClientesDAO {
     
     public void cadastrarCliente(Clientes cliente){
         try {
-            String sql = "INSERT INTO tb_cliente(nome, cpf, rg, email, celular, cep, endereco, numero, bairro, complemento, cidade, estado)"
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            /*String sql = "INSERT INTO tb_cliente(nome, cpf, rg, email, celular, cep, endereco, numero, bairro, complemento, cidade, estado)"
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";*/
+            
+            String sql = "INSERT INTO tb_cliente (nome)"
+                    + "value(?)";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getCpf());
+            /*stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getRg());
             stmt.setString(4, cliente.getEmail());
             stmt.setString(5, cliente.getCelular());
@@ -41,7 +44,7 @@ public class ClientesDAO {
             stmt.setString(9, cliente.getBairro());
             stmt.setString(10, cliente.getComplemento());
             stmt.setString(11, cliente.getCidade());
-            stmt.setString(12, cliente.getEstado());
+            stmt.setString(12, cliente.getEstado());*/
             
             stmt.execute();
             stmt.close();
