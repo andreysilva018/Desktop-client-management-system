@@ -62,8 +62,7 @@ public class FrmCliente extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         btnNovoTbl = new javax.swing.JButton();
-        btnAtualizarTbl = new javax.swing.JButton();
-        btnSalvarTbl = new javax.swing.JButton();
+        btnEditarTbl = new javax.swing.JButton();
         btnExcluirTbl = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaClientes = new javax.swing.JTable();
@@ -128,12 +127,25 @@ public class FrmCliente extends javax.swing.JFrame {
         );
 
         btnNovoTbl.setText("Novo");
+        btnNovoTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNovoTblMouseClicked(evt);
+            }
+        });
 
-        btnAtualizarTbl.setText("Atualizar");
-
-        btnSalvarTbl.setText("Salvar");
+        btnEditarTbl.setText("Editar");
+        btnEditarTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarTblMouseClicked(evt);
+            }
+        });
 
         btnExcluirTbl.setText("Excluir");
+        btnExcluirTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExcluirTblMouseClicked(evt);
+            }
+        });
 
         tabelaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -145,27 +157,38 @@ public class FrmCliente extends javax.swing.JFrame {
             new String [] {
                 "Id", "Nome", "Cpf", "Rg", "Email", "Celular", "Cep", "Endereço", "Número", "Bairro", "Complemento", "Cidade", "Estado"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabelaClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabelaClientes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 914, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(264, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNovoTbl, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAtualizarTbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalvarTbl)
+                .addComponent(btnEditarTbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnExcluirTbl)
-                .addGap(252, 252, 252))
-            .addComponent(jScrollPane1)
+                .addGap(304, 304, 304))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAtualizarTbl, btnExcluirTbl, btnNovoTbl, btnSalvarTbl});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnEditarTbl, btnExcluirTbl, btnNovoTbl});
 
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,13 +197,13 @@ public class FrmCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNovoTbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtualizarTbl, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSalvarTbl, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnExcluirTbl, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnEditarTbl)
+                        .addComponent(btnExcluirTbl)))
                 .addGap(45, 45, 45))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnAtualizarTbl, btnExcluirTbl, btnNovoTbl, btnSalvarTbl});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnEditarTbl, btnExcluirTbl, btnNovoTbl});
 
         jTabbedPane1.addTab("Consulta de Clientes", jPanel2);
 
@@ -192,6 +215,7 @@ public class FrmCliente extends javax.swing.JFrame {
         lblCodigo.setText("Codígo:");
         lblCodigo.setPreferredSize(null);
 
+        txtCodigo.setEditable(false);
         txtCodigo.setPreferredSize(null);
 
         lblCpf.setText("CPF:");
@@ -267,6 +291,11 @@ public class FrmCliente extends javax.swing.JFrame {
         btnNovo.setText("Novo");
 
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAtualizarMouseClicked(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -281,6 +310,16 @@ public class FrmCliente extends javax.swing.JFrame {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExcluirMouseClicked(evt);
+            }
+        });
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         lblComplemento.setText("Complemento:");
 
@@ -442,6 +481,10 @@ public class FrmCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    /**
+        Evento criado no botão Salavar na tela de cadastro após o clique os atributos da classe cliente recebe o conteúdo que o usuario digitou nos campos de edição de texto.
+        O metodo para inserir o cliente no banco de dados é consumido e o cliente que recebeu os atributos dos textEdit é passado no parametro do metodo, assim é feito a inserção dos dados no banco de dados
+    */
     private void btnSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalvarMouseClicked
         try {
             Clientes cliente = new Clientes();
@@ -466,10 +509,144 @@ public class FrmCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro - " + erro);
         }
     }//GEN-LAST:event_btnSalvarMouseClicked
-
+    
+    /**
+        Evento criado para carregar a tabela do banco de dados, 
+        Que no qual é utilizada para mostrar os clientes que possui no banco de dados na tabela da tela de consulta.
+    */
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         CarregarTableClientes();
     }//GEN-LAST:event_formWindowActivated
+    
+    /**
+        Evento do click com o mouse na tabela de consulta de clientes criado para redirecionar a tela de cadastro,
+        na tela de cadastro os campo de textEdit recebe os dados da tabela da tela de consulta,
+        Onde cada textEdit recebe o texto da um alinha selecionada da tabela.
+    */
+    private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
+        if(evt.getClickCount() >= 2){
+            jTabbedPane1.setSelectedIndex(1);
+
+            txtCodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
+            txtNome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
+            txtCpf.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2).toString());
+            txtRg.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3).toString());
+            txtEmail.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4).toString());
+            txtCelular.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5).toString());
+            txtCep.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6).toString());
+            txtEndereco.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7).toString());
+            txtNumero.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 8).toString());
+            txtBairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9).toString());
+            txtComplemento.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 10).toString());
+            txtCidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
+            cbEstado.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
+        }
+    }//GEN-LAST:event_tabelaClientesMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    /**
+        Evento de click de mouse criado no botão da tela de cadastro para excluir cliente no banco de dados onde é chamado a classe cliente que o objeto,
+        Onde o atributo Id do cliente é chamdo para receber o texto do textEdit, onde esse texto é o código do cliente, após receber o código, a classe ClientesDAO é iomplementada, 
+        O metodo excluir da classe ClientesDAo é chamado onde recebe por parametro o cliente que recebeu o atriuto Id do textEdit, 
+        Esse id é utilizado para consultar pelo Id no banco de dados, e rodar o camdno sql Delete, para excluir o cliente
+    */
+    private void btnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirMouseClicked
+
+        try {
+            Clientes cliente = new Clientes();
+            
+            cliente.setId(Integer.parseInt(txtCodigo.getText()));
+            
+            ClientesDAO cdao = new ClientesDAO();
+            cdao.excluirCliente(cliente);
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro: "  + erro);
+        }
+    }//GEN-LAST:event_btnExcluirMouseClicked
+
+    /**
+        Evento de click de mouse criado no botão Novo na tela de Consulta
+        Redirecionamento para tela de cadastro, para realizar um novo cadastro de clientes
+    */
+    private void btnNovoTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoTblMouseClicked
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_btnNovoTblMouseClicked
+
+    /**
+     Evento de click de mouse criado no botão Excluir da tela de consulta
+     Onde é feito uma comparação se foi selecionado o cliente, após a comparação a classe cliente é chamada,
+     E o atributo Id recebe o valor da coluna 0 da linha selecionada, após isso é implementada a classe ClientesDAO
+     Chama o metodo excluir da classe ClientesDAO que recebe por parametro o cliente com o seu Id, e roda o comando sql
+    */
+    private void btnExcluirTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExcluirTblMouseClicked
+        try {
+            int linha = tabelaClientes.getSelectedRow();
+            
+            if(linha == -1){
+                JOptionPane.showMessageDialog(null, "Selecione um clinete!");
+                return;
+            }
+            Clientes cliente = new Clientes();
+            cliente.setId(Integer.parseInt(tabelaClientes.getValueAt(linha, 0).toString()));
+            
+            ClientesDAO cdao = new ClientesDAO();
+            cdao.excluirCliente(cliente);
+            JOptionPane.showMessageDialog(null, "Teste de excluir cliente pela tela de consulta concluido!");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+    }//GEN-LAST:event_btnExcluirTblMouseClicked
+
+    private void btnEditarTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarTblMouseClicked
+        try {
+            jTabbedPane1.setSelectedIndex(1);
+            
+            txtCodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
+            txtNome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
+            txtCpf.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 2).toString());
+            txtRg.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 3).toString());
+            txtEmail.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 4).toString());
+            txtCelular.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 5).toString());
+            txtCep.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 6).toString());
+            txtEndereco.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 7).toString());
+            txtNumero.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 8).toString());
+            txtBairro.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 9).toString());
+            txtComplemento.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 10).toString());
+            txtCidade.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 11).toString());
+            cbEstado.setSelectedItem(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 12).toString());
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+    }//GEN-LAST:event_btnEditarTblMouseClicked
+
+    private void btnAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAtualizarMouseClicked
+        try {
+            Clientes cliente = new Clientes();
+            
+            cliente.setId(Integer.parseInt(txtCodigo.getText()));
+            cliente.setNome(txtNome.getText());
+            cliente.setCpf(txtCpf.getText());
+            cliente.setRg(txtRg.getText());
+            cliente.setEmail(txtEmail.getText());
+            cliente.setCelular(txtCelular.getText());
+            cliente.setCep(txtCep.getText());
+            cliente.setEndereco(txtEndereco.getText());
+            cliente.setNumero(Integer.parseInt(txtNumero.getText()));
+            cliente.setBairro(txtBairro.getText());
+            cliente.setComplemento(txtComplemento.getText());
+            cliente.setCidade(txtCidade.getText());
+            cliente.setEstado(cbEstado.getSelectedItem().toString());
+            
+            ClientesDAO cdao = new ClientesDAO();
+            cdao.alterarCliente(cliente);
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+    }//GEN-LAST:event_btnAtualizarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -508,13 +685,12 @@ public class FrmCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizar;
-    private javax.swing.JButton btnAtualizarTbl;
+    private javax.swing.JButton btnEditarTbl;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnExcluirTbl;
     private javax.swing.JButton btnNovo;
     private javax.swing.JButton btnNovoTbl;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JButton btnSalvarTbl;
     private javax.swing.JComboBox<String> cbEstado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

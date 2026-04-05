@@ -26,15 +26,12 @@ public class ClientesDAO {
     
     public void cadastrarCliente(Clientes cliente){
         try {
-            /*String sql = "INSERT INTO tb_cliente(nome, cpf, rg, email, celular, cep, endereco, numero, bairro, complemento, cidade, estado)"
-                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";*/
-            
-            String sql = "INSERT INTO tb_cliente (nome)"
-                    + "value(?)";
+            String sql = "INSERT INTO tb_cliente(nome, cpf, rg, email, celular, cep, endereco, numero, bairro, complemento, cidade, estado)"
+                    + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, cliente.getNome());
-            /*stmt.setString(2, cliente.getCpf());
+            stmt.setString(2, cliente.getCpf());
             stmt.setString(3, cliente.getRg());
             stmt.setString(4, cliente.getEmail());
             stmt.setString(5, cliente.getCelular());
@@ -44,7 +41,7 @@ public class ClientesDAO {
             stmt.setString(9, cliente.getBairro());
             stmt.setString(10, cliente.getComplemento());
             stmt.setString(11, cliente.getCidade());
-            stmt.setString(12, cliente.getEstado());*/
+            stmt.setString(12, cliente.getEstado());
             
             stmt.execute();
             stmt.close();
@@ -57,7 +54,7 @@ public class ClientesDAO {
     
     public void excluirCliente(Clientes cliente){
         try {
-            String sql = "delete from tb_cliente where id = ?";
+            String sql = "DELETE from tb_cliente where id = ?";
             
             PreparedStatement stmt = conn.prepareStatement(sql);
             
@@ -73,7 +70,34 @@ public class ClientesDAO {
         }
     }
     
-    public void alterarCliente(Clientes cliente){}
+    public void alterarCliente(Clientes cliente){
+        try {
+            String sql = "UPDATE tb_cliente set nome=?, cpf=?, rg=?, email=?, celular=?"
+                    + "cep=?, endereco=?, numero=?, bairro=?, complemento=?, cidade=?, estado=?, id=?";
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getCpf());
+            stmt.setString(3, cliente.getRg());
+            stmt.setString(4, cliente.getEmail());
+            stmt.setString(5, cliente.getCelular());
+            stmt.setString(6, cliente.getCep());
+            stmt.setString(7, cliente.getEndereco());
+            stmt.setInt(8, cliente.getNumero());
+            stmt.setString(9, cliente.getBairro());
+            stmt.setString(10, cliente.getComplemento());
+            stmt.setString(11, cliente.getCidade());
+            stmt.setString(12, cliente.getEstado());
+            stmt.setInt(13, cliente.getId());
+            
+            stmt.execute();
+            stmt.close();
+            
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso!");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Erro para atualizar cadastro do cliente" + erro);
+        }
+    }
     
     public List<Clientes> listarClientes(){
         try {
