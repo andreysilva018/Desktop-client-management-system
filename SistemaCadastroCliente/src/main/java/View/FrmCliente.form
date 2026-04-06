@@ -230,11 +230,6 @@
                                   <Component id="txtRg" min="-2" pref="112" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblComplemento" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="txtComplemento" min="-2" pref="238" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="btnNovo" linkSize="1" min="-2" pref="95" max="-2" attributes="0"/>
@@ -281,8 +276,16 @@
                                   </Group>
                               </Group>
                           </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblComplemento" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtComplemento" min="-2" pref="238" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="260" max="32767" attributes="0"/>
+                      <EmptySpace pref="228" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -336,7 +339,9 @@
                           <Component id="lblComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtComplemento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="120" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="30" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="btnNovo" linkSize="2" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="btnAtualizar" linkSize="2" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -351,10 +356,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblNome">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nome:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Nome:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNome">
@@ -366,10 +368,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCodigo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cod&#xed;go:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Cod&#xed;go:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCodigo">
@@ -382,10 +381,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCpf">
               <Properties>
-                <Property name="text" type="java.lang.String" value="CPF:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* CPF:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtCpf">
@@ -400,10 +396,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblRg">
               <Properties>
-                <Property name="text" type="java.lang.String" value="RG:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* RG:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtRg">
@@ -418,10 +411,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblEmail">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Email:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Email:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtEmail">
@@ -433,10 +423,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCelular">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Celular:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Celular:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtCelular">
@@ -448,10 +435,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCep">
               <Properties>
-                <Property name="text" type="java.lang.String" value="CEP:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* CEP:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtCep">
@@ -466,10 +450,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblCidade">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cidade:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Cidade:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtCidade">
@@ -481,10 +462,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblEstado">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Estado:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Estado:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cbEstado">
@@ -530,10 +508,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblEndereco">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Endere&#xe7;o:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtEndereco">
@@ -545,10 +520,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblNumero">
               <Properties>
-                <Property name="text" type="java.lang.String" value="N&#xfa;mero:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* N&#xfa;mero:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNumero">
@@ -560,10 +532,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblBairro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Bairro:"/>
-                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="null"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="* Bairro:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtBairro">
@@ -592,7 +561,6 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnSalvarMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalvarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnExcluir">
@@ -601,16 +569,30 @@
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnExcluirMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblComplemento">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Complemento:"/>
+                <Property name="text" type="java.lang.String" value="* Complemento:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtComplemento">
             </Component>
+            <Container class="javax.swing.JPanel" name="jPanel4">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
           </SubComponents>
         </Container>
       </SubComponents>
