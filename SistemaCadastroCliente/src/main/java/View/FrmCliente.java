@@ -110,7 +110,7 @@ public class FrmCliente extends javax.swing.JFrame {
             }
         });
 
-        btnTelaConsulta.setBackground(new java.awt.Color(0, 0, 0));
+        btnTelaConsulta.setBackground(new java.awt.Color(153, 153, 153));
         btnTelaConsulta.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         btnTelaConsulta.setText("Consulta de clientes");
         btnTelaConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -119,6 +119,8 @@ public class FrmCliente extends javax.swing.JFrame {
             }
         });
 
+        btnTelaCadastro.setBackground(new java.awt.Color(153, 153, 153));
+        btnTelaCadastro.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         btnTelaCadastro.setText("Cadastro de clientes");
         btnTelaCadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -144,11 +146,11 @@ public class FrmCliente extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(255, 255, 255)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTelaConsulta)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(btnTelaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTelaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTelaConsulta))
                 .addGap(200, 200, 200))
         );
 
@@ -581,7 +583,7 @@ public class FrmCliente extends javax.swing.JFrame {
     */
     private void tabelaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaClientesMouseClicked
         if(evt.getClickCount() >= 2){
-            jTabbedPane1.setSelectedIndex(1);
+            jTabbedPane1.setSelectedIndex(2);
 
             txtCodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
             txtNome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
@@ -629,7 +631,7 @@ public class FrmCliente extends javax.swing.JFrame {
         Redirecionamento para tela de cadastro, para realizar um novo cadastro de clientes
     */
     private void btnNovoTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNovoTblMouseClicked
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
         new Utilitarios().LimpaTela(jPanel3);
     }//GEN-LAST:event_btnNovoTblMouseClicked
 
@@ -659,7 +661,7 @@ public class FrmCliente extends javax.swing.JFrame {
 
     private void btnEditarTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarTblMouseClicked
         try {
-            jTabbedPane1.setSelectedIndex(1);
+            jTabbedPane1.setSelectedIndex(2);
             
             txtCodigo.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 0).toString());
             txtNome.setText(tabelaClientes.getValueAt(tabelaClientes.getSelectedRow(), 1).toString());
